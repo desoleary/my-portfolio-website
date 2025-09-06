@@ -1,0 +1,6 @@
+# apps/web/.gitignore
+.next/
+.next-cache/
+out/
+coverage/
+node_modules
