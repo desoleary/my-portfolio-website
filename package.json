@@ -23,9 +23,11 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,jsx}": [
-      "pnpm exec eslint --fix --cache --max-warnings=0",
-      "pnpm exec prettier --write"
+    "apps/web/**/*.{ts,tsx,js,jsx}": [
+      "pnpm --filter @my-portfolio/web exec eslint --fix --cache --max-warnings=0"
+    ],
+    "apps/api/**/*.ts": [
+      "pnpm --filter @my-portfolio/api exec eslint --fix --cache --max-warnings=0"
     ],
     "**/*.{json,md,css,scss,yml,yaml}": [
       "pnpm exec prettier --write"

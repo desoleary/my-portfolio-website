@@ -1,11 +1,14 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
-import { ConfigProvider, theme as antdTheme } from 'antd'
+import { ConfigProvider } from 'antd'
 import { DefaultSeo } from 'next-seo'
+
+import { baseTheme } from '@components/../theme/theme';
 
 import type { AppProps } from 'next/app'
 import 'antd/dist/reset.css'
-import '../styles/globals.css'
+import '@styles/globals.css';
+
 
 if (process.env.NODE_ENV !== 'production') {
   // dynamic import kept out of prod bundle
@@ -32,20 +35,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 })
 const client = new ApolloClient({ link: from([errorLink, httpLink]), cache: new InMemoryCache() })
 
-const PRIMARY = '#6C4CF5'
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ConfigProvider
-        theme={{
-          algorithm: antdTheme.defaultAlgorithm,
-          token: { colorPrimary: PRIMARY, borderRadius: 8 },
-          components: {
-            Button: { controlHeight: 40, fontWeight: 600 },
-            Layout: { headerBg: '#0f2437', headerColor: '#fff' }
-          }
-        }}
+          theme={baseTheme}
       >
         <DefaultSeo
           titleTemplate='%s | Portfolio'

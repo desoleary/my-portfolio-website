@@ -9,7 +9,7 @@ const { Content } = Layout
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <AppHeader />
       <Content>
         <Hero />
