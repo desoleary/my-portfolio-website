@@ -7,12 +7,5 @@
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "__tests__"
-  ]
+  "exclude": ["dist", "build", "node_modules", "**/*.spec.ts", "**/*.test.ts", "__tests__"]
 }

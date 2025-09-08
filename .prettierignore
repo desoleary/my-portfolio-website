@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+.pnp.*
+.pnp.js
+
+# Build / cache outputs
+dist
+.next
+coverage
+.turbo
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Env files
+.env
+.env.*.local
+
+# Editor/IDE configs
+.vscode
+.idea
+
+# Next.js generated types (for all apps)
+**/next-env.d.ts
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+
+# Misc system files
+.DS_Store
+Thumbs.db
+
+# Lockfiles
+pnpm-lock.yaml
+yarn.lock
+package-lock.json

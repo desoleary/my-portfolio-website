@@ -1,16 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity('projects')
 export class Project {
   @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  id!: string
 
   @Column({ type: 'varchar', length: 160 })
-  title!: string;
+  title!: string
 
   @Column({ type: 'text' })
-  excerpt!: string;
+  excerpt!: string
 
   @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt!: Date;
+  updatedAt!: Date
 }

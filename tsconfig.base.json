@@ -13,12 +13,8 @@
     "useDefineForClassFields": false,
     "baseUrl": ".",
     "paths": {
-      "@shared/*": [
-        "packages/shared/src/*"
-      ]
+      "@shared/*": ["packages/shared/src/*"]
     },
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   }
 }

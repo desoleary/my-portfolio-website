@@ -1,32 +1,32 @@
-import { createHash } from 'node:crypto';
-import { writeFileSync, readFileSync } from 'node:fs';
-import fg from 'fast-glob';
+import { createHash } from 'node:crypto'
+import { writeFileSync, readFileSync } from 'node:fs'
+
+import fg from 'fast-glob'
 
 // Naive extractor: finds gql`...` template blocks
-const GQL_TAG = /gql`([\s\S]*?)`/g;
+const GQL_TAG = /gql`([\s\S]*?)`/g
 
 async function main() {
   // scan TS/TSX under src
-  const files = await fg(['src/**/*.{ts,tsx}'], { dot: false });
+  const files = await fg(['src/**/*.{ts,tsx}'], { dot: false })
 
-  const map: Record<string, string> = {};
+  const map: Record<string, string> = {}
   for (const f of files) {
-    const src = readFileSync(f, 'utf8');
-    let m: RegExpExecArray | null;
+    const src = readFileSync(f, 'utf8')
+    let m: RegExpExecArray | null
     while ((m = GQL_TAG.exec(src))) {
-      const q = m[1].trim();
-      const id = createHash('sha256').update(q).digest('hex').slice(0, 12);
-      map[id] = q;
+      const q = m[1].trim()
+      const id = createHash('sha256').update(q).digest('hex').slice(0, 12)
+      map[id] = q
     }
   }
 
-  writeFileSync('src/persisted-queries.json', JSON.stringify(map, null, 2));
-  // eslint-disable-next-line no-console
-  console.log(`Persisted ${Object.keys(map).length} queries.`);
+  writeFileSync('src/persisted-queries.json', JSON.stringify(map, null, 2))
+
+  console.log(`Persisted ${Object.keys(map).length} queries.`)
 }
 
-main().catch((e) => {
-  // eslint-disable-next-line no-console
-  console.error(e);
-  process.exit(1);
-});
+main().catch(e => {
+  console.error(e)
+  process.exit(1)
+})

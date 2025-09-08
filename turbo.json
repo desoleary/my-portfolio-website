@@ -1,19 +1,10 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": [
-    "DATABASE_URL",
-    "NEXT_PUBLIC_GRAPHQL_URL"
-  ],
+  "globalEnv": ["DATABASE_URL", "NEXT_PUBLIC_GRAPHQL_URL"],
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "dist/**",
-        ".next/**",
-        "build/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "build/**"]
     },
     "dev": {
       "cache": false,
@@ -21,9 +12,7 @@
     },
     "test": {
       "dependsOn": [],
-      "outputs": [
-        "coverage/**"
-      ]
+      "outputs": ["coverage/**"]
     },
     "lint": {
       "cache": true

@@ -1,52 +1,59 @@
-import base from "./index.mjs";
-import reactPlugin from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import jsxA11y from "eslint-plugin-jsx-a11y";
+import base from './index.mjs'
+import reactPlugin from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
 
 export default [
-  // shared base (ts/js, import ordering, prettier last)
   ...base,
 
-  // React/web defaults
   {
-    name: "env:react",
+    name: 'env:react',
     plugins: {
       react: reactPlugin,
-      "react-hooks": reactHooks,
-      "jsx-a11y": jsxA11y
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y
     },
-    settings: { react: { version: "detect" } },
+    settings: { react: { version: 'detect' } },
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module"
-      // browser globals are provided by rules/plugins; add here if you need explicit globals
-      // globals: { window: "readonly", document: "readonly" }
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { window: 'readonly', document: 'readonly' }
     },
     rules: {
-      // plugin recommended rules (classic configs) applied explicitly for flat config
       ...reactPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      ...jsxA11y.configs.recommended.rules
+      ...jsxA11y.configs.recommended.rules,
+
+      // Modern JSX runtime — no need for React import
+      'react/react-in-jsx-scope': 'off'
     }
   },
-
-  // Test-only relaxations for web (underscore-args allowed, any allowed)
+  // Node-style globals for config files in the web app
   {
-    name: "overrides:web-tests",
-    files: [
-      "test/**/*.{ts,tsx}",
-      "src/**/*.{spec,test,e2e,e2e-spec}.{ts,tsx}"
-    ],
+    name: 'overrides:web-config-files',
+    files: ['**/next.config.*', '**/vite.config.*', '**/vitest.config.*', '**/eslint.config.*'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        __dirname: 'readonly',
+        module: 'readonly',
+        require: 'readonly'
+      }
+    }
+  },
+  {
+    name: 'overrides:web-tests',
+    files: ['test/**/*.{ts,tsx}', 'src/**/*.{spec,test,e2e,e2e-spec}.{ts,tsx}'],
     rules: {
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
         {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_"
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_'
         }
       ]
     }
   }
-];
+]

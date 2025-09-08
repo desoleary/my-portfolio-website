@@ -4,7 +4,13 @@
   "packageManager": "pnpm@9.6.0",
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": ["@nestjs/common", "@nestjs/core"]
+      "ignoreMissing": [
+        "@nestjs/common",
+        "@nestjs/core"
+      ]
+    },
+    "overrides": {
+      "vite": "5.4.19"
     }
   },
   "scripts": {
@@ -12,11 +18,18 @@
     "dev": "turbo dev",
     "test": "turbo test",
     "lint": "turbo lint",
-    "format": "prettier --write ."
+    "format": "prettier --write \"**/*.{js,ts,tsx,jsx,json,md,css,scss,yml,yaml}\""
   },
   "devDependencies": {
+    "@eslint/js": "^9",
+    "eslint": "^9",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.3.3",
     "turbo": "^2.0.6",
-    "typescript": "^5.6.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8"
   }
 }

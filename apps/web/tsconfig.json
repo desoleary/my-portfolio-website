@@ -1,27 +1,24 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@my-portfolio/config/tsconfig/react",
   "compilerOptions": {
-    "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es2022"
-    ],
-    "allowJs": true,
-    "noEmit": true,
-    "incremental": true,
-    "isolatedModules": true,
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
       "@graphql/*": ["graphql/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
+  "include": ["src", "vite.config.ts", "vitest.config.ts"],
   "exclude": [
-    "node_modules"
+    "dist",
+    "node_modules",
+    "test",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.e2e.ts",
+    "**/*.e2e.tsx",
+    "**/*.e2e-spec.ts",
+    "**/*.e2e-spec.tsx"
   ]
 }

@@ -1,10 +1,9 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@my-portfolio/config/tsconfig/node",
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
+    "baseUrl": ".",
+    "outDir": "dist"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src", "scripts", "vitest.config.ts"],
+  "exclude": ["dist", "node_modules", "test", "src/**/*.{test,spec,e2e-spec}.ts"]
 }

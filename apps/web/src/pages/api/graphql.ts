@@ -1,6 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { graphqlProxy } from '@graphql/server/proxy';
+import { graphqlProxy } from '@graphql/server/proxy'
+
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  return graphqlProxy(req, res);
+  return graphqlProxy(req, res)
 }
