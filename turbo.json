@@ -1,6 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": ["DATABASE_URL", "NEXT_PUBLIC_GRAPHQL_URL"],
+  "globalDependencies": ["package.json", "pnpm-lock.yaml", "tsconfig.base.json"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -12,10 +13,16 @@
     },
     "test": {
       "dependsOn": [],
-      "outputs": ["coverage/**"]
+      "outputs": []
     },
     "lint": {
-      "cache": true
+      "outputs": [".eslintcache"]
+    },
+    "format": {
+      "outputs": []
+    },
+    "typecheck": {
+      "outputs": []
     }
   }
 }

@@ -9,7 +9,7 @@
     "dev": "NODE_ENV=development ts-node-dev --project tsconfig.json --respawn --transpile-only src/main.ts",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/main.js",
-    "test": "vitest run",
+    "test": "vitest run  --passWithNoTests",
     "lint": "eslint . --ext .ts,.tsx,.js --fix",
     "format": "prettier --write \"**/*.{js,ts,tsx,jsx,json,md,css,scss,yml,yaml}\"",
     "gen:gql": "graphql-codegen --config codegen.ts",

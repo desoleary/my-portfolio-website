@@ -3,10 +3,11 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "vitest run",
+    "test": "vitest run  --passWithNoTests",
     "lint": "eslint . --ext .ts,.tsx,.js --fix",
     "format": "prettier --write \"**/*.{js,ts,tsx,jsx,json,md,css,scss,yml,yaml}\"",
     "generate": "graphql-codegen --config codegen.ts",

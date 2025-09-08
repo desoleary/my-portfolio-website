@@ -15,8 +15,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './test/setup.ts',
-    include: ['src/**/*.{spec,test}.ts', 'test/**/*.{spec,test}.ts'],
     passWithNoTests: true,
+    include: ['src/**/*.{spec,test}.ts', 'test/**/*.{spec,test}.ts'],
     coverage: {
       provider: 'v8',
       reportsDirectory: 'coverage',
