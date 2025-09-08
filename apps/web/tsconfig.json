@@ -9,7 +9,12 @@
     "allowJs": true,
     "noEmit": true,
     "incremental": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@graphql/*": ["graphql/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

@@ -116,7 +116,7 @@ importers:
         version: 5.6.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@apollo/client':
         specifier: ^3.10.8
-        version: 3.14.0(@types/react@18.3.24)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(subscriptions-transport-ws@0.11.0(graphql@16.11.0))
+        version: 3.14.0(@types/react@18.3.24)(graphql-ws@6.0.6(graphql@16.11.0))(graphql@16.11.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(subscriptions-transport-ws@0.11.0(graphql@16.11.0))
       antd:
         specifier: ^5.19.1
         version: 5.27.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -193,6 +193,9 @@ importers:
 
   packages/shared:
     devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.19.13
       typescript:
         specifier: ^5.6.2
         version: 5.9.2
@@ -5719,7 +5722,7 @@ snapshots:
     dependencies:
       graphql: 16.11.0
 
-  '@apollo/client@3.14.0(@types/react@18.3.24)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(subscriptions-transport-ws@0.11.0(graphql@16.11.0))':
+  '@apollo/client@3.14.0(@types/react@18.3.24)(graphql-ws@6.0.6(graphql@16.11.0))(graphql@16.11.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(subscriptions-transport-ws@0.11.0(graphql@16.11.0))':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.11.0)
       '@wry/caches': 1.0.1

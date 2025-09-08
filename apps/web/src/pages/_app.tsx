@@ -1,61 +1,45 @@
-// apps/web/src/pages/_app.tsx
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
-import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
-    HttpLink,
-    from,
-} from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { ConfigProvider, theme as antdTheme } from 'antd';
 import 'antd/dist/reset.css';
+import '../styles/globals.css';
 
-// Optional: richer Apollo warnings/errors in dev (kept out of prod bundles)
 if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { loadDevMessages, loadErrorMessages } = require('@apollo/client/dev');
-    loadDevMessages();
-    loadErrorMessages();
+    loadDevMessages(); loadErrorMessages();
 }
 
-// Use the Next BFF so cookies/headers stay same-origin and persisted queries can work
 const httpLink = new HttpLink({
     uri: '/api/graphql',
-    credentials: 'include',           // future-proof if you add cookie-based auth
-    fetchOptions: { cache: 'no-store' } // avoid caching issues during dev
+    credentials: 'include',
+    fetchOptions: { cache: 'no-store' }
 });
-
-// Lightweight client-side error logging (safe to keep)
 const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (process.env.NODE_ENV !== 'production') {
-        if (graphQLErrors) {
-            // eslint-disable-next-line no-console
-            graphQLErrors.forEach(({ message, path }) =>
-                console.warn('[GraphQL error]', { message, path })
-            );
-        }
-        if (networkError) {
-            // eslint-disable-next-line no-console
-            console.warn('[Network error]', networkError);
-        }
+        if (graphQLErrors) graphQLErrors.forEach(({ message, path }) => console.warn('[GraphQL error]', { message, path }));
+        if (networkError) console.warn('[Network error]', networkError);
     }
 });
+const client = new ApolloClient({ link: from([errorLink, httpLink]), cache: new InMemoryCache() });
 
-const client = new ApolloClient({
-    link: from([errorLink, httpLink]),
-    cache: new InMemoryCache() // ✅ no deprecated options like `canonizeResults`
-});
+const PRIMARY = '#6C4CF5';
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <ApolloProvider client={client}>
-            <DefaultSeo
-                titleTemplate="%s | Portfolio"
-                defaultTitle="Des O'Leary — Portfolio"
-                openGraph={{ type: 'website', site_name: 'Des Portfolio' }}
-            />
-            <Component {...pageProps} />
+            <ConfigProvider
+                theme={{
+                    algorithm: antdTheme.defaultAlgorithm,
+                    token: { colorPrimary: PRIMARY, borderRadius: 8 },
+                    components: { Button: { controlHeight: 40, fontWeight: 600 }, Layout: { headerBg: '#0f2437', headerColor: '#fff' } }
+                }}
+            >
+                <DefaultSeo titleTemplate="%s | Portfolio" defaultTitle="Des O'Leary — Portfolio" openGraph={{ type: 'website', site_name: 'Des Portfolio' }} />
+                <Component {...pageProps} />
+            </ConfigProvider>
         </ApolloProvider>
     );
 }

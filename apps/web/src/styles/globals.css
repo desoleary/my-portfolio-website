@@ -1,0 +1,50 @@
+:root{
+    --hero-bg: #f6f7fb;
+    --hero-pattern: rgba(0,0,0,0.03);
+    --primary: #6C4CF5;
+}
+
+html, body, #__next { height: 100%; }
+body { background: #f7f8fa; }
+
+/* Subtle geometric background for hero */
+.hero-bg {
+    background-color: var(--hero-bg);
+    background-image:
+            linear-gradient(120deg, var(--hero-pattern) 12%, transparent 12.5%, transparent 87%, var(--hero-pattern) 87.5%, var(--hero-pattern)),
+            linear-gradient(60deg, var(--hero-pattern) 12%, transparent 12.5%, transparent 87%, var(--hero-pattern) 87.5%, var(--hero-pattern)),
+            linear-gradient(0deg, var(--hero-pattern) 12%, transparent 12.5%, transparent 87%, var(--hero-pattern) 87.5%, var(--hero-pattern));
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px;
+}
+
+/* Mouse scroll indicator */
+.mouse-scroll {
+    width: 25px;
+    height: 40px;
+    border: 2px solid #333;
+    border-radius: 60px;
+    position: relative;
+    overflow: hidden;
+    opacity: .8;
+}
+.mouse-scroll::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    border-radius: 50%;
+    opacity: 1;
+    animation: wheel 1.3s infinite;
+}
+@keyframes wheel {
+    to { opacity: 0; top: 27px; }
+}
+
+/* Utility */
+.container { max-width: 1100px; margin: 0 auto; padding: 48px 24px; }
+.center { display:flex; align-items:center; justify-content:center; }
